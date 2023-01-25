@@ -9,7 +9,7 @@
 Новый массив будет выглядеть вот так:
 
 1 4 49 2
-5 9 2 9
+5 9 2 3
 64 4 4 4
 
 int[,] GetArray(int m, int n, int minValue, int maxValue)
