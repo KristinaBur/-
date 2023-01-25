@@ -47,6 +47,6 @@ void PrintArray(int[,] array)
         {
             Console.Write(array[i, j] + " ");
         }
-        Console.WriteLine("");
+        Console.WriteLine(""); // "" - означают пустую строку. Вместо них можно написать Console.WriteLine(String.Empty);  Например: string address = String.Empty;
     }
 }
