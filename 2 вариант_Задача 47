@@ -1,0 +1,30 @@
+Console.WriteLine("Введите количество строк:");
+int rows1 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите количество столбцов:");
+int columns1 = Convert.ToInt32(Console.ReadLine());
+
+System.Console.WriteLine();
+PrintArray1(GetArray1(rows1, columns1, -10, 10));
+
+// --------------Methods---------
+
+double[,] GetArray1(int m, int n, int minValue, int maxValue)
+{
+    double[,] Array1 = new double[m, n];
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        { Array1[i, j] = Math.Round((new Random().NextDouble() * (maxValue - minValue) + minValue),1); }
+    }
+    return Array1;
+}
+
+void PrintArray1(double[,] Array1)
+{
+    for (int i = 0; i < Array1.GetLength(0); i++)
+    {
+        for (int j = 0; j < Array1.GetLength(1); j++)
+        { Console.Write($"{Array1[i, j]} "); }
+        Console.WriteLine();
+    }
+}
