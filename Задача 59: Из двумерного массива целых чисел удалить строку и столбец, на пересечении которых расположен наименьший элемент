@@ -1,0 +1,78 @@
+Console.Write("Enter a number of rows: "); 
+int rows = int.Parse(Console.ReadLine()!); 
+ 
+Console.Write("Enter a number of columns: "); 
+int columns = int.Parse(Console.ReadLine()!); 
+ 
+int[,] array = GetArray(rows, columns, 0, 10); 
+PrintArray(array); 
+Console.WriteLine(); 
+ 
+int[] Indexes = FindIndexesOfMin(array); 
+Console.WriteLine($"{Indexes[0]}, {Indexes[1]}"); 
+Console.WriteLine(); 
+PrintArray(NewArray(array, FindIndexesOfMin(array)));
+
+int[,] GetArray(int m, int n, int minValue, int maxValue){ 
+    int[,] result = new int[m,n]; 
+    for(int i = 0; i < m; i++) 
+    { 
+        for(int j = 0; j < n; j++) 
+        { 
+            result[i,j] = new Random().Next(minValue, maxValue + 1); 
+        } 
+    } 
+    return result; 
+} 
+void PrintArray(int[,] array) 
+{ 
+    for(int i = 0; i < array.GetLength(0); i++) 
+    { 
+        for(int j = 0; j < array.GetLength(1); j++) 
+        { 
+            Console.Write($"{array[i,j]} "); 
+        } 
+        Console.WriteLine(); 
+ 
+    } 
+} 
+
+int[] FindIndexesOfMin(int[,] array) 
+{ 
+    int min = array[0,0]; 
+    int[] MinIndexes = new int[2]; 
+ 
+    for (int i = 0; i < array.GetLength(0); i++ ) 
+    { 
+        for (int j = 0; j < array.GetLength(1); j++) 
+        { 
+        if (array[i,j] < min) 
+        {min = array[i, j]; 
+        MinIndexes[0] = i; 
+        MinIndexes[1] = j; 
+        } 
+ 
+        } 
+    } 
+return MinIndexes; 
+} 
+ 
+int[,] NewArray(int[,] array, int[] Indexes) 
+{ 
+int[,] NewArray = new int[array.GetLength(0)-1, array.GetLength(1)-1]; 
+int rows = 0; 
+int columns = 0; 
+for (int i = 0; i < array.GetLength(0); i++) 
+    { 
+        if (i == Indexes[0]) continue; 
+        for (int j = 0; j < array.GetLength(1); j++) 
+        { 
+        if (j == Indexes[1]) continue; 
+        NewArray[rows,columns] = array[i,j]; 
+        columns++; 
+        } 
+        columns = 0; 
+        rows++; 
+    } 
+    return NewArray; 
+}
