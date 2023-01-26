@@ -1,0 +1,70 @@
+Задача 55:** Задайте двумерный массив. Напишите программу, которая заменяет строки на столбцы. 
+В случае, если это невозможно, программа должна вывести сообщение для пользователя.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+5 2 6 7
+В итоге получается вот такой массив:
+1 5 8 5
+4 9 4 2
+7 2 2 6
+2 3 4 7
+
+int[,] array = GetArray(4,4,0,10);
+PrintArray(array);
+
+System.Console.WriteLine();
+
+bool check = Check(array);
+System.Console.WriteLine(check);
+
+int[,] changedArray = Change(array);
+
+if(check) PrintArray(changedArray);
+else System.Console.WriteLine("Это невозможно");
+
+// Change(array);
+// PrintArray(array);
+// ------------------
+
+bool Check(int[,] array)
+{
+    return array.GetLength(0) == array.GetLength(1);
+}
+
+int [,] GetArray (int m, int n, int minValue, int maxValue)
+{
+    int[,] array2 = new int[m, n];
+    for(int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            array2[i,j] = new Random().Next(minValue,maxValue+1);
+        }
+    }
+    return array2;
+}
+
+void PrintArray(int[,] collection)
+{
+    for (int i = 0; i < collection.GetLength(0); i++)
+    {
+        for (int j = 0; j < collection.GetLength(1); j++)
+        { Console.Write($"{collection[i, j]} "); }
+        Console.WriteLine();
+    }
+}
+
+int[,] Change(int[,] array)
+{
+    int[,] changedArray = new int[array.GetLength(0),array.GetLength(1)];
+    for(int i = 0; i <array.GetLength(0); i++)
+    {
+        for(int j = 0; j <array.GetLength(1); j++)
+        {
+            changedArray[i,j] = array[j,i];
+        }
+    }
+return changedArray;
+}
