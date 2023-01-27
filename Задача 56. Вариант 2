@@ -9,65 +9,66 @@
 // Программа считает количество элементов в каждой строке и выдает количество строк с наименьшим значением
 // суммой элементов: 1 строка
 
-Консоль . WriteLine ( " Введите массив размера mxn и диапазон случайных значений: " );
-int  m  =  InputNumbers ( " Введите m: " );
-int  n  =  InputNumbers ( " Введите n: " );
-int  range  =  InputNumbers ( " Введите диапазон: от 1 до " );
+Console.WriteLine("Введите размер массива m x n и диапазон случайных значений:");
+int m = InputNumbers("Введите m: ");
+int n = InputNumbers("Введите n: ");
+int range = InputNumbers("Введите диапазон: от 1 до ");
 
-int [,] array  =  new  int [ m , n ];
-Создатьмассив ( массив );
-WriteArray ( массив );
+int[,] array = new int[m, n];
+CreateArray(array);
+WriteArray(array);
 
- интервал  minSumLine =  0 ;
-int  sumLine  =  SumLineElements ( массив , 0 );
-for ( int  i  =  1 ; i  <  array . GetLength ( 0 ); i ++ )
+int minSumLine = 0;
+int sumLine = SumLineElements(array, 0);
+for (int i = 1; i < array.GetLength(0); i++)
 {
-  int  tempSumLine  =  SumLineElements ( массив , i );
-  если ( sumLine  >  tempSumLine )
+  int tempSumLine = SumLineElements(array, i);
+  if (sumLine > tempSumLine)
   {
-    СуммаСтрока  =  временнаяСуммаСтрока ;
-    minSumLine  =  я ;
+    sumLine = tempSumLine;
+    minSumLine = i;
   }
 }
 
-Консоль . WriteLine ( $" \n { minSumLine + 1 } - строки с наименьшей суммой ({ sumLine }) элементов " );
+Console.WriteLine($"\n{minSumLine+1} - строкa с наименьшей суммой ({sumLine}) элементов ");
 
-int  SumLineElements ( int [,] array , int  i )
+
+int SumLineElements(int[,] array, int i)
 {
-  int  sumLine  =  массив [ i , 0 ];
-  for ( int  j  =  1 ; j  <  array . GetLength ( 1 ); j ​​++ )
+  int sumLine = array[i,0];
+  for (int j = 1; j < array.GetLength(1); j++)
   {
-    sumLine  +=  массив [ i , j ];
+    sumLine += array[i,j];
   }
-  вернуть  суммуСтрока ;
+  return sumLine;
 }
 
-int  InputNumbers ( строковый  ввод )
+int InputNumbers(string input)
 {
-  Консоль . Запись ( ввод );
-   вывод  int =  Преобразовать . ToInt32 ( Консоль.ReadLine ( ) ) ;
-  возвратный  вывод ;
+  Console.Write(input);
+  int output = Convert.ToInt32(Console.ReadLine());
+  return output;
 }
 
-недействительным  CreateArray ( int [,] массив )
+void CreateArray(int[,] array)
 {
-  for ( int  i  =  0 ; i  <  array . GetLength ( 0 ); i ++ )
+  for (int i = 0; i < array.GetLength(0); i++)
   {
-    for ( int  j  =  0 ; j  <  array . GetLength ( 1 ); j ​​++ )
+    for (int j = 0; j < array.GetLength(1); j++)
     {
-      массив [ i , j ] =  новый  случайный (). Далее ( диапазон );
+      array[i, j] = new Random().Next(range);
     }
   }
 }
 
-недействительным  WriteArray ( int [,] массив )
+void WriteArray (int[,] array)
 {
-  for ( int  i  =  0 ; i  <  array . GetLength ( 0 ); i ++ )
+  for (int i = 0; i < array.GetLength(0); i++)
   {
-    for ( int  j  =  0 ; j  <  array . GetLength ( 1 ); j ​​++ )
+    for (int j = 0; j < array.GetLength(1); j++)
     {
-      Консоль . Записать ( массив [ i , j ] +  "  " );
+      Console.Write(array[i,j] + " ");
     }
-    Консоль . НаписатьСтроку ();
+    Console.WriteLine();
   }
 }
