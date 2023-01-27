@@ -1,0 +1,73 @@
+// Задача 56: Задайте прямоугольный двумерный массив.
+// Напишите программу, которая будет находить страницу с наименьшим количеством элементов.
+// Например, заданный массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// 5 2 6 7
+
+// Программа считает количество элементов в каждой строке и выдает количество строк с наименьшим значением
+// суммой элементов: 1 строка
+
+Консоль . WriteLine ( " Введите массив размера mxn и диапазон случайных значений: " );
+int  m  =  InputNumbers ( " Введите m: " );
+int  n  =  InputNumbers ( " Введите n: " );
+int  range  =  InputNumbers ( " Введите диапазон: от 1 до " );
+
+int [,] array  =  new  int [ m , n ];
+Создатьмассив ( массив );
+WriteArray ( массив );
+
+ интервал  minSumLine =  0 ;
+int  sumLine  =  SumLineElements ( массив , 0 );
+for ( int  i  =  1 ; i  <  array . GetLength ( 0 ); i ++ )
+{
+  int  tempSumLine  =  SumLineElements ( массив , i );
+  если ( sumLine  >  tempSumLine )
+  {
+    СуммаСтрока  =  временнаяСуммаСтрока ;
+    minSumLine  =  я ;
+  }
+}
+
+Консоль . WriteLine ( $" \n { minSumLine + 1 } - строки с наименьшей суммой ({ sumLine }) элементов " );
+
+int  SumLineElements ( int [,] array , int  i )
+{
+  int  sumLine  =  массив [ i , 0 ];
+  for ( int  j  =  1 ; j  <  array . GetLength ( 1 ); j ​​++ )
+  {
+    sumLine  +=  массив [ i , j ];
+  }
+  вернуть  суммуСтрока ;
+}
+
+int  InputNumbers ( строковый  ввод )
+{
+  Консоль . Запись ( ввод );
+   вывод  int =  Преобразовать . ToInt32 ( Консоль.ReadLine ( ) ) ;
+  возвратный  вывод ;
+}
+
+недействительным  CreateArray ( int [,] массив )
+{
+  for ( int  i  =  0 ; i  <  array . GetLength ( 0 ); i ++ )
+  {
+    for ( int  j  =  0 ; j  <  array . GetLength ( 1 ); j ​​++ )
+    {
+      массив [ i , j ] =  новый  случайный (). Далее ( диапазон );
+    }
+  }
+}
+
+недействительным  WriteArray ( int [,] массив )
+{
+  for ( int  i  =  0 ; i  <  array . GetLength ( 0 ); i ++ )
+  {
+    for ( int  j  =  0 ; j  <  array . GetLength ( 1 ); j ​​++ )
+    {
+      Консоль . Записать ( массив [ i , j ] +  "  " );
+    }
+    Консоль . НаписатьСтроку ();
+  }
+}
