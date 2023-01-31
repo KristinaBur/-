@@ -1,0 +1,12 @@
+// Найдите факториал числа c помощью рекурсии 
+ 
+Console.WriteLine("Введите число"); 
+int N = int.Parse(Console.ReadLine()!); 
+Console.WriteLine(FactorialOf(N)); 
+ 
+int FactorialOf(int N) 
+{ 
+    if(N == 0) return 1; 
+    if(N == 1) return 1; 
+    return (N * FactorialOf(N - 1)); 
+}
